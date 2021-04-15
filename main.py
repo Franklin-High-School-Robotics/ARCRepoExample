@@ -47,7 +47,7 @@ def petal1_3():  # petal method for quadrants 1 and 3
     send("forward" + str(inchesToCentimeters(10)), 5)
 
 
-def petal2_4():  # petal method for quadrants 1 and 3
+def petal2_4():  # petal method for quadrants 2 and 4
     degree = 0
     for i in range(0, 5):
         degree += 5
