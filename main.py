@@ -15,8 +15,9 @@ import Code.waypoint_class
 
 # EDIT HERE
 def main_function(waypoints, sock):
-    send("takeoff")
-    # send("up"+str(inchesToCentimeters(60)),10)
+    send("command", 3)
+    send("takeoff", 5)
+#     send("up"+str(inchesToCentimeters(36)),10)
     petal2_4()
     send("cw" + str(90), 5)
     petal2_4()
@@ -24,7 +25,7 @@ def main_function(waypoints, sock):
     petal1_3()
     send("cw" + str(90), 5)
     petal1_3()
-    send("land")
+    send("land", 5)
 
 
 def petal1_3():  # petal method for quadrants 1 and 3
