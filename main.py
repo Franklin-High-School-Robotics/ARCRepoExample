@@ -10,7 +10,6 @@ import numpy as np
 import sys
 import matplotlib.pyplot as plt
 import scipy as sp
-import Code.waypoint_class
 
 
 # EDIT HERE
@@ -19,11 +18,11 @@ def main_function(waypoints, sock):
     send("takeoff", 5)
 #     send("up"+str(inchesToCentimeters(36)),10)
     petal2_4()
-    send("cw" + str(90), 5)
+    send("cw " + str(90), 3)
     petal2_4()
-    send("cw" + str(90), 5)
+    send("cw " + str(90), 3)
     petal1_3()
-    send("cw" + str(90), 5)
+    send("cw " + str(90), 3)
     petal1_3()
     send("land", 5)
 
@@ -32,40 +31,40 @@ def petal1_3():  # petal method for quadrants 1 and 3
     degree = 0
     for i in range(0, 5):
         degree += 5
-        send("cw" + str(degree), 5)
-        send("forward" + str(inchesToCentimeters(8)), 5)
-    send("cw" + str(12), 5)
-    send("forward" + str(inchesToCentimeters(8)), 5)
+        send("cw " + str(degree), 3)
+        send("forward " + str(inchesToCentimeters(8)), 3)
+    send("cw " + str(12), 3)
+    send("forward " + str(inchesToCentimeters(8)), 5)
     for i in range(0, 3):
         degree += 8
-        send("cw" + str(degree), 5)
-        send("forward" + str(inchesToCentimeters(8)), 5)
+        send("cw " + str(degree), 3)
+        send("forward " + str(inchesToCentimeters(8)), 5)
     degree = 0
     for i in range(0, 3):
         degree += 10
-        send("cw" + str(degree), 5)
-        send("forward" + str(degree), 5)
-    send("forward" + str(inchesToCentimeters(10)), 5)
+        send("cw " + str(degree), 3)
+        send("forward " + str(degree), 5)
+    send("forward " + str(inchesToCentimeters(10)), 5)
 
 
 def petal2_4():  # petal method for quadrants 2 and 4
     degree = 0
     for i in range(0, 5):
         degree += 5
-        send("ccw" + str(degree), 5)
-        send("forward" + str(inchesToCentimeters(8)), 5)
-    send("ccw" + str(12), 5)
-    send("forward" + str(inchesToCentimeters(8)), 5)
+        send("ccw " + str(degree), 5)
+        send("forward " + str(inchesToCentimeters(8)), 5)
+    send("ccw " + str(12), 5)
+    send("forward " + str(inchesToCentimeters(8)), 5)
     for i in range(0, 3):
         degree += 8
-        send("ccw" + str(degree), 5)
-        send("forward" + str(inchesToCentimeters(8)), 5)
+        send("ccw " + str(degree), 5)
+        send("forward " + str(inchesToCentimeters(8)), 5)
     degree = 0
     for i in range(0, 3):
         degree += 10
-        send("ccw" + str(degree), 5)
-        send("forward" + str(inchesToCentimeters(10)), 5)
-    send("forward" + str(inchesToCentimeters(10)), 5)
+        send("ccw " + str(degree), 5)
+        send("forward " + str(inchesToCentimeters(10)), 5)
+    send("forward " + str(inchesToCentimeters(10)), 5)
 
 
 def inchesToCentimeters(inches):
@@ -140,10 +139,10 @@ def ex_main_function(waypoints, sock):
 
 
 # IP and port of Tello
-tello_address = ('192.168.10.2', 8889)
+tello_address = ('192.168.10.1', 8889)
 
 # IP and port of local computer
-local_address = (' ---- ', 9000)
+local_address = ('192.168.10.2', 9000)
 
 # Create a UDP connection that we'll send the command to
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -180,18 +179,18 @@ def receive():
             break
 
 
-if __name__ == "main":
-    # Create and start a listening thread that runs in the background
-    # This utilizes our receive functions and will continuously monitor for incoming messages
-    receiveThread = threading.Thread(target=receive)
-    receiveThread.daemon = True
-    receiveThread.start()
 
-    waypoints = []  # This will contain an array of Waypoint class objects
+# Create and start a listening thread that runs in the background
+# This utilizes our receive functions and will continuously monitor for incoming messages
+receiveThread = threading.Thread(target=receive)
+receiveThread.daemon = True
+receiveThread.start()
 
-    # Execute the actual algorithm
-    # ex_main_function(waypoints, sock)
-    main_function(waypoints, sock)
+waypoints = []  # This will contain an array of Waypoint class objects
 
-    # Close the socket
-    sock.close()
+# Execute the actual algorithm
+# ex_main_function(waypoints, sock)
+main_function(waypoints, sock)
+
+# Close the socket
+sock.close()
