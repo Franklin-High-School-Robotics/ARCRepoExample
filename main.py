@@ -45,37 +45,37 @@ def petal1_3():  # petal method for quadrants 1 and 3
         send("cw " + str(degree), 3)
         send("forward " + str(inchesToCentimeters(8)), 3)
     send("cw " + str(12), 3)
-    send("forward " + str(inchesToCentimeters(8)), 5)
+    send("forward " + str(inchesToCentimeters(8)), 3)
     for i in range(0, 3):
         degree += 8
         send("cw " + str(degree), 3)
-        send("forward " + str(inchesToCentimeters(8)), 5)
+        send("forward " + str(inchesToCentimeters(8)), 3)
     degree = 0
     for i in range(0, 3):
         degree += 10
         send("cw " + str(degree), 3)
-        send("forward " + str(degree), 5)
-    send("forward " + str(inchesToCentimeters(10)), 5)
+        send("forward " + str(degree), 3)
+    send("forward " + str(inchesToCentimeters(10)), 3)
 
 
 def petal2_4():  # petal method for quadrants 2 and 4 || Might not be needed if curve methods work
     degree = 0
     for i in range(0, 5):
         degree += 5
-        send("ccw " + str(degree), 5)
-        send("forward " + str(inchesToCentimeters(8)), 5)
-    send("ccw " + str(12), 5)
-    send("forward " + str(inchesToCentimeters(8)), 5)
+        send("ccw " + str(degree), 3)
+        send("forward " + str(inchesToCentimeters(8)), 3)
+    send("ccw " + str(12), 3)
+    send("forward " + str(inchesToCentimeters(8)), 3)
     for i in range(0, 3):
         degree += 8
-        send("ccw " + str(degree), 5)
-        send("forward " + str(inchesToCentimeters(8)), 5)
+        send("ccw " + str(degree), 3)
+        send("forward " + str(inchesToCentimeters(8)), 3)
     degree = 0
     for i in range(0, 3):
         degree += 10
-        send("ccw " + str(degree), 5)
-        send("forward " + str(inchesToCentimeters(10)), 5)
-    send("forward " + str(inchesToCentimeters(10)), 5)
+        send("ccw " + str(degree), 3)
+        send("forward " + str(inchesToCentimeters(10)), 3)
+    send("forward " + str(inchesToCentimeters(10)), 3)
 
 
 def inchesToCentimeters(inches):
