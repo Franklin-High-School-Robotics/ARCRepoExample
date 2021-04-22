@@ -79,7 +79,7 @@ def petal2_4():  # petal method for quadrants 2 and 4 || Might not be needed if 
 
 
 def inchesToCentimeters(inches):
-    inches *= 2 # I know this is not the exact conversion but it has to be an integer value so im rounding down
+    inches *= 3 # I know this is not the exact conversion but it has to be an integer value so im rounding down
     return inches
 
 
