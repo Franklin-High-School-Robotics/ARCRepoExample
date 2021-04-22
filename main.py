@@ -17,13 +17,24 @@ def main_function(waypoints, sock):
     send("command", 3)
     send("takeoff", 5)
 #     send("up"+str(inchesToCentimeters(36)),10)
-    petal2_4()
-    send("cw " + str(90), 3)
-    petal2_4()
-    send("cw " + str(90), 3)
-    petal1_3()
-    send("cw " + str(90), 3)
-    petal1_3()
+    send("curve 80 -60 0 100 -100 0 60", 15)
+    send("curve -40 20 0 -100 100 0 60", 15)
+    
+    send("curve 60 -80 0 100 -100 0 60", 15)
+    send("curve -20 40 0 -100 100 0 60", 15)
+    
+    send("curve 80 60 0 100 100 0 60", 15)
+    send("curve -40 -20 0 -100 -100 0 60", 15)
+    
+    send("curve 80 60 0 100 100 0 60", 15)
+    send("curve -40 20 0 -100 -100 0 60", 15)# might need to change these if it doesn't work
+#     petal2_4()
+#     send("cw " + str(90), 3)
+#     petal2_4()
+#     send("cw " + str(90), 3)
+#     petal1_3()
+#     send("cw " + str(90), 3)
+#     petal1_3()
     send("land", 5)
 
 
@@ -47,7 +58,7 @@ def petal1_3():  # petal method for quadrants 1 and 3
     send("forward " + str(inchesToCentimeters(10)), 5)
 
 
-def petal2_4():  # petal method for quadrants 2 and 4
+def petal2_4():  # petal method for quadrants 2 and 4 || Might not be needed if curve methods work
     degree = 0
     for i in range(0, 5):
         degree += 5
@@ -68,7 +79,7 @@ def petal2_4():  # petal method for quadrants 2 and 4
 
 
 def inchesToCentimeters(inches):
-    inches *= 2.54
+    inches *= 2 # I know this is not the exact conversion but it has to be an integer value so im rounding down
     return inches
 
 
@@ -179,18 +190,18 @@ def receive():
             break
 
 
+if __name__ == "__main__":
+    # Create and start a listening thread that runs in the background
+    # This utilizes our receive functions and will continuously monitor for incoming messages
+    receiveThread = threading.Thread(target=receive)
+    receiveThread.daemon = True
+    receiveThread.start()
 
-# Create and start a listening thread that runs in the background
-# This utilizes our receive functions and will continuously monitor for incoming messages
-receiveThread = threading.Thread(target=receive)
-receiveThread.daemon = True
-receiveThread.start()
+    waypoints = []  # This will contain an array of Waypoint class objects
 
-waypoints = []  # This will contain an array of Waypoint class objects
+    # Execute the actual algorithm
+    # ex_main_function(waypoints, sock)
+    main_function(waypoints, sock)
 
-# Execute the actual algorithm
-# ex_main_function(waypoints, sock)
-main_function(waypoints, sock)
-
-# Close the socket
-sock.close()
+    # Close the socket
+    sock.close()
