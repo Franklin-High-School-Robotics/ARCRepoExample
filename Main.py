@@ -17,6 +17,25 @@ def main_function(waypoints, sock):
     send("command", 3)
     send("takeoff", 5)
 #     send("up"+str(inchesToCentimeters(36)),10)
+
+    send("curve 50 -75 0 100 -100 0 60", 15)
+    send("ccw 180", 4)
+    send("curve 50 -75 0 100 -100 0 60", 15)
+    
+    send("curve 50 -75 0 100 -100 0 60", 15)
+    send("ccw 180", 4)
+    send("curve 50 -75 0 100 -100 0 60", 15)
+    
+    send("ccw 90", 3)
+    
+    send("curve 50 -75 0 100 -100 0 60", 15)
+    send("ccw 180", 4)
+    send("curve 50 -75 0 100 -100 0 60", 15)
+    
+    send("curve 50 -75 0 100 -100 0 60", 15)
+    send("ccw 180", 4)
+    send("curve 50 -75 0 100 -100 0 60", 15)
+    
     for i in range(0,5):
         send("curve 80 -60 0 100 -100 0 60", 15)
         send("curve -40 20 0 -100 100 0 60", 15)
