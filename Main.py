@@ -36,11 +36,6 @@ def main_function(waypoints, sock):
     send("ccw 180", 4)
     send("curve 50 -75 0 100 -100 0 60", 15)
     
-    for i in range(0,5):
-        send("curve 80 -60 0 100 -100 0 60", 15)
-        send("curve -40 20 0 -100 100 0 60", 15)
-        send("ccw 90", 2)
-    send("ccw 90", 2)
     
     # might need to change these if it doesn't work
 #     petal2_4()
