@@ -16,7 +16,6 @@ import scipy as sp
 def main_function(waypoints, sock):
     send("command", 3)
     send("takeoff", 5)
-#     send("up"+str(inchesToCentimeters(36)),10)
 
     send("curve 50 -75 0 100 -100 0 60", 15)
     send("ccw 180", 4)
